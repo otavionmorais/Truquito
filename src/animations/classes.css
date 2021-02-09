@@ -1,0 +1,14 @@
+@import 'keyframes.css';
+
+.zoomInOut {
+    animation: animacaoZoom infinite 2s linear;
+}
+
+.cartaJogadaBottom {
+    transform: translateY(-50vh);
+    transition: transform 1s;
+}
+
+.cartaBottom {
+    align-self: flex-end;
+}

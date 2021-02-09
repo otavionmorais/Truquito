@@ -1,0 +1,5 @@
+@keyframes animacaoZoom {
+    0% {transform:scale(3)}
+    50% {transform: scale(2);}
+    100% {transform: scale(3);}
+}
