@@ -1,47 +1,22 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import Card from '../../components/card';
-import {MainContainer, ScoreContainer, Title, Score, TopCardsContainer, 
-    BottomCardsContainer, MiddleContainer, LeftCardsContainer, RightCardsContainer, MiddleCardsContainer}from './styles';
+import {
+    MainContainer, ScoreContainer, Title, Score, TopCardsContainer,
+    BottomCardsContainer, MiddleContainer, LeftCardsContainer, RightCardsContainer, MiddleCardsContainer
+} from './styles';
+import GenerateCardsService from '../../services/GenerateCardsService';
 
 const Main = () => {
 
-    const topPlayerCards =  useCallback(() => {
-        return(
-            <>
-                <Card />
-                <Card />
-                <Card />
-            </>
-        )
-    }, []);
+    const [cardsService, setCardsService] = useState(new GenerateCardsService());
 
-    const bottomPlayerCards =  useCallback(() => {
-        return(
+    const renderCards = useCallback((cards) => {
+        return (
             <>
-                <Card />
-                <Card />
-            </>
-        )
-    }, []);
-
-    const leftPlayerCards =  useCallback(() => {
-        return(
-            <>
-                <Card />
-                <Card />
-                <Card />
-            </>
-        )
-    }, []);
-
-    const rightPlayerCards =  useCallback(() => {
-        return(
-            <>
-                <Card />
-                <Card />
-                <Card />
-            </>
-        )
+                {cards.map((item) =>
+                    <Card image={item.image} name={item.nome} value={item.valor} />
+                )}
+            </>)
     }, []);
 
     return (
@@ -51,21 +26,21 @@ const Main = () => {
                 <Score className="zoomInOut">0</Score>
             </ScoreContainer>
             <TopCardsContainer>
-                {topPlayerCards()}
+                {renderCards(cardsService.getTopPlayerCards())}
             </TopCardsContainer>
             <MiddleContainer>
                 <LeftCardsContainer>
-                    {leftPlayerCards()}
+                    {renderCards(cardsService.getLeftPlayerCards())}
                 </LeftCardsContainer>
                 <MiddleCardsContainer>
                     <Card />
                 </MiddleCardsContainer>
                 <RightCardsContainer>
-                    {rightPlayerCards()}
+                    {renderCards(cardsService.getRightPlayerCards())}
                 </RightCardsContainer>
             </MiddleContainer>
             <BottomCardsContainer>
-                {bottomPlayerCards()}
+                {renderCards(cardsService.getBottomPlayerCards())}
             </BottomCardsContainer>
         </MainContainer>
     );

@@ -8,10 +8,11 @@ export const CardContainer = styled.div`
 
     margin: 10px;
     cursor: pointer;
-
 `;
 
 export const Temp = styled.span`
     position: absolute;
     margin: 7px;
+    font-size: 12px;
+    max-width: 60px;
 `;

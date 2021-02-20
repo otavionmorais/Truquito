@@ -5,7 +5,7 @@ import { CardContainer, Temp } from './styles';
 const Card = ({ image, name, value }) => {
     return (
         <CardContainer>
-            <Temp>{value}</Temp>
+            <Temp>{name}</Temp>
             <img src={image}
                 style={{ border: '1px solid black', borderRadius: 10, backgroundColor: image ? undefined : 'green' }} width={70} height={100} />
         </CardContainer>
