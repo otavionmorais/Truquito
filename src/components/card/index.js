@@ -1,11 +1,13 @@
 import React from 'react';
-import { CardContainer } from './styles';
+import { CardContainer, Temp } from './styles';
 
 
-const Card = ({image, name, value}) => {
+const Card = ({ image, name, value }) => {
     return (
         <CardContainer>
-            <img src={image} style={{border: '1px solid black', borderRadius: 10}} width={70} height={100} />
+            <Temp>{value}</Temp>
+            <img src={image}
+                style={{ border: '1px solid black', borderRadius: 10, backgroundColor: image ? undefined : 'green' }} width={70} height={100} />
         </CardContainer>
     );
 }

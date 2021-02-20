@@ -10,3 +10,8 @@ export const CardContainer = styled.div`
     cursor: pointer;
 
 `;
+
+export const Temp = styled.span`
+    position: absolute;
+    margin: 7px;
+`;
