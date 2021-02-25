@@ -14,10 +14,41 @@ const Main = () => {
         return (
             <>
                 {cards.map((item) =>
-                    <Card image={item.image} name={item.nome} value={item.valor} />
+                    <Card
+                        player={item.player}
+                        image={item.image}
+                        name={item.nome}
+                        value={item.valor}
+                        onClick={() => { }}
+                    />
                 )}
             </>)
     }, []);
+
+
+    const renderGame = useCallback(() => {
+        return (
+            <>
+                <TopCardsContainer>
+                    {renderCards(cardsService.getTopPlayerCards())}
+                </TopCardsContainer>
+                <MiddleContainer>
+                    <LeftCardsContainer>
+                        {renderCards(cardsService.getLeftPlayerCards())}
+                    </LeftCardsContainer>
+                    <MiddleCardsContainer>
+                        <Card />
+                    </MiddleCardsContainer>
+                    <RightCardsContainer>
+                        {renderCards(cardsService.getRightPlayerCards())}
+                    </RightCardsContainer>
+                </MiddleContainer>
+                <BottomCardsContainer>
+                    {renderCards(cardsService.getBottomPlayerCards())}
+                </BottomCardsContainer>
+            </>
+        );
+    }, [cardsService, renderCards]);
 
     return (
         <MainContainer>
@@ -25,23 +56,7 @@ const Main = () => {
                 <Title>TᖇᑌᑫᑌITO</Title>
                 <Score className="zoomInOut">0</Score>
             </ScoreContainer>
-            <TopCardsContainer>
-                {renderCards(cardsService.getTopPlayerCards())}
-            </TopCardsContainer>
-            <MiddleContainer>
-                <LeftCardsContainer>
-                    {renderCards(cardsService.getLeftPlayerCards())}
-                </LeftCardsContainer>
-                <MiddleCardsContainer>
-                    <Card />
-                </MiddleCardsContainer>
-                <RightCardsContainer>
-                    {renderCards(cardsService.getRightPlayerCards())}
-                </RightCardsContainer>
-            </MiddleContainer>
-            <BottomCardsContainer>
-                {renderCards(cardsService.getBottomPlayerCards())}
-            </BottomCardsContainer>
+            {renderGame()}
         </MainContainer>
     );
 }

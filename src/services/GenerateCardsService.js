@@ -48,6 +48,4 @@ class GenerateCardsService {
 
 }
 
-new GenerateCardsService();
-
 export default GenerateCardsService;
