@@ -10,9 +10,6 @@ class Player {
         this.playedCards = [];
     }
 
-    setCards(cards) {
-        this.cards = cards;
-    }
 
     playCard(cardName) {
         const index = this.cards.findIndex((item) => item.nome === cardName);

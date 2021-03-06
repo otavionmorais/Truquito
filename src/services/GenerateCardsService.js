@@ -4,20 +4,26 @@ import { CARDS } from '../constants/cards';
 
 class GenerateCardsService {
 
-    bottomPlayerCards = [];
-    topPlayerCards = [];
-    leftPlayerCards = [];
-    rightPlayerCards = [];
+    bottomPlayer = null;
+    topPlayer = null;
+    leftPlayer = null;
+    rightPlayer = null;
     allSelectedCards = [];
 
-    constructor() {
-        this.selectRandomCards(this.bottomPlayerCards);
-        this.selectRandomCards(this.topPlayerCards);
-        this.selectRandomCards(this.leftPlayerCards);
-        this.selectRandomCards(this.rightPlayerCards);
+
+    constructor({ bottomPlayer, topPlayer, leftPlayer, rightPlayer }) {
+        this.bottomPlayer = bottomPlayer;
+        this.topPlayer = topPlayer;
+        this.leftPlayer = leftPlayer;
+        this.rightPlayer = rightPlayer;
+        this.selectRandomCards(bottomPlayer);
+        this.selectRandomCards(topPlayer);
+        this.selectRandomCards(leftPlayer);
+        this.selectRandomCards(rightPlayer);
     }
 
-    selectRandomCards = (arr) => {
+    selectRandomCards = (player) => {
+        const arr = player.cards;
         for (let i = 0; i < 3; i++) {
             let selectedIndex = Math.floor(Math.random() * CARDS.length);
             let selectedCard = null;
@@ -28,22 +34,6 @@ class GenerateCardsService {
             arr.push(selectedCard);
             this.allSelectedCards.push(selectedCard);
         }
-    }
-
-    getBottomPlayerCards = () => {
-        return this.bottomPlayerCards;
-    }
-
-    getTopPlayerCards = () => {
-        return this.topPlayerCards;
-    }
-
-    getLeftPlayerCards = () => {
-        return this.leftPlayerCards;
-    }
-
-    getRightPlayerCards = () => {
-        return this.rightPlayerCards;
     }
 
 }
